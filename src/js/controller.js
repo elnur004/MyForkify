@@ -33,6 +33,9 @@ const showRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
     console.log(id);
+
+    if (!id) return;
+
     // 1) Loading recipe
     renderSpinner(recipeContainer);
 
@@ -164,5 +167,15 @@ const showRecipe = async function () {
     alert(err);
   }
 };
+// window.addEventListener('hashchange', showRecipe);
+// window.addEventListener('load', showRecipe);
 
-window.addEventListener('hashchange', showRecipe);
+// Variant 1
+// const addListener = function (listener) {
+//   window.addEventListener(listener, showRecipe);
+// };
+// addListener('hashchange');
+// addListener('load');
+
+// Variant 2
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
