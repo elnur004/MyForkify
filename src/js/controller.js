@@ -1,5 +1,7 @@
 // import icons from '../img/icons.svg'; // Parcel 1
 import icons from 'url:../img/icons.svg'; // Parcell 2
+import 'core-js/stable'; // for polyfilling everything
+import 'regenerator-runtime/runtime'; // for polyfilling async/await
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -23,7 +25,7 @@ const renderSpinner = function (parentEl) {
     </svg>
   </div>
   `;
-  parentEl.innerHTML = '';
+  parentEl.innerHTML = ''; // clear the PARENT element before insert anything
   parentEl.insertAdjacentHTML('afterbegin', markup);
 };
 
@@ -154,7 +156,7 @@ const showRecipe = async function () {
         </a>
       </div>
     `;
-    recipeContainer.innerHTML = '';
+    recipeContainer.innerHTML = ''; // clear the PARENT element before insert anything
     recipeContainer.insertAdjacentHTML('afterbegin', markup);
   } catch (err) {
     alert(err);
