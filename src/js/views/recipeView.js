@@ -17,6 +17,23 @@ class RecipeView {
     this.#parentElement.innerHTML = ''; // clear the PARENT element before insert anything
   }
 
+  // Publisher-Subscriber Design pattern (Publisher: addHandlerRender)
+  addHandlerRender(handler) {
+    // Variant 1
+    // window.addEventListener('hashchange', handler);
+    // window.addEventListener('load', handler);
+
+    // Variant 2
+    // const addListener = function (listener) {
+    //   window.addEventListener(listener, handler);
+    // };
+    // addListener('hashchange');
+    // addListener('load');
+
+    // Variant 3
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
   renderSpinner = function () {
     const markup = `
     <div class="spinner">

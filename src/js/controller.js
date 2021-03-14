@@ -10,6 +10,7 @@ const recipeContainer = document.querySelector('.recipe');
 
 ///////////////////////////////////////
 
+// Publisher-Subscriber Design pattern (Subscriber: controlRecipes)
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -27,17 +28,9 @@ const controlRecipes = async function () {
     alert(err);
   }
 };
-// window.addEventListener('hashchange', controlRecipes);
-// window.addEventListener('load', controlRecipes);
 
-// Variant 1
-// const addListener = function (listener) {
-//   window.addEventListener(listener, controlRecipes);
-// };
-// addListener('hashchange');
-// addListener('load');
-
-// Variant 2
-['hashchange', 'load'].forEach(ev =>
-  window.addEventListener(ev, controlRecipes)
-);
+// Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
