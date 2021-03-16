@@ -36,6 +36,10 @@ class RecipeView {
   }
 
   handlerError(message = this.#errorMessage) {
+    const errMsg = message.includes('Invalid _id:')
+      ? this.#errorMessage
+      : message;
+
     const markup = `
     <div class="error">
         <div>
@@ -43,7 +47,7 @@ class RecipeView {
             <use href="${icons}#icon-alert-triangle"></use>
           </svg>
         </div>
-        <p>${message}</p>
+        <p>${errMsg}</p>
     </div>
     `;
     this.#clear();
