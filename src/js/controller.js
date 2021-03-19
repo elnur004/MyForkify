@@ -1,14 +1,9 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
+import searchView from './views/searchView.js';
 
 import 'core-js/stable'; // for polyfilling everything
 import 'regenerator-runtime/runtime'; // for polyfilling async/await
-
-const recipeContainer = document.querySelector('.recipe');
-
-// https://forkify-api.herokuapp.com/v2   // Forkify API
-
-///////////////////////////////////////
 
 // Publisher-Subscriber Design pattern (Subscriber: controlRecipes)
 const controlRecipes = async function () {
@@ -31,7 +26,14 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
   try {
-    await model.loadSearchResults('pizza');
+    // 1) Get search query
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    // 2) Load search results
+    await model.loadSearchResults(query);
+
+    // 3) Render results
     console.log(model.state.search.results);
   } catch (err) {
     console.log(err);
@@ -41,6 +43,6 @@ const controlSearchResults = async function () {
 // Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
-  recipeView.addHandlerRender(controlSearchResults);
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();
