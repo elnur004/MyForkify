@@ -35,7 +35,7 @@ class RecipeView {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
-  handlerError(message = this.#errorMessage) {
+  renderError(message = this.#errorMessage) {
     const errMsg = message.includes('Invalid _id:')
       ? this.#errorMessage
       : message;
@@ -54,7 +54,7 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  // handlerSuccess(message) {
+  // renderSuccess(message) {
   //   const markup = `
   //       <div class="message">
   //         <div>

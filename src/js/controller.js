@@ -25,12 +25,22 @@ const controlRecipes = async function () {
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    recipeView.handlerError(err.message);
+    recipeView.renderError(err.message);
+  }
+};
+
+const controlSearchResults = async function () {
+  try {
+    await model.loadSearchResults('pizza');
+    console.log(model.state.search.results);
+  } catch (err) {
+    console.log(err);
   }
 };
 
 // Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerRender(controlSearchResults);
 };
 init();
