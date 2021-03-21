@@ -3,6 +3,10 @@ import icons from 'url:../../img/icons.svg'; // Parcell 2
 export default class View {
   _data;
   render(data) {
+    // Check the data is 'undefined' and 'null' or is an array and it is empty --> if so? return 'ERROR'!
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError();
+
     this._data = data;
     const markup = this._generateMarkup();
     this._clear();

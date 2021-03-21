@@ -6,6 +6,11 @@ import resultsView from './views/resultsView.js';
 import 'core-js/stable'; // for polyfilling everything
 import 'regenerator-runtime/runtime'; // for polyfilling async/await
 
+// Parcel "Hot Module Replacement" -- improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh.
+if (module.hot) {
+  module.hot.accept();
+}
+
 // Publisher-Subscriber Design pattern (Subscriber: controlRecipes)
 const controlRecipes = async function () {
   try {
@@ -37,7 +42,6 @@ const controlSearchResults = async function () {
 
     // 3) Render results
     resultsView.render(model.state.search.results);
-    console.log(model.state.search.results);
   } catch (err) {
     console.log(err);
   }
