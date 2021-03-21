@@ -9,12 +9,13 @@ class ResultsView extends View {
   _generateMarkup() {
     console.log(this._data);
 
+    // return this._data.map(result => this._generateMarkupPreview(result)).join('');
     return this._data.map(this._generateMarkupPreview).join('');
   }
 
   _generateMarkupPreview(result) {
     return `
-    <li class="preview">
+    <li class="preview">    
         <a class="preview__link" href="#${result.id}">
         <figure class="preview__fig">
             <img src="${result.imageUrl}" alt="${result.title}" />
