@@ -4,21 +4,30 @@ import icons from 'url:../../img/icons.svg'; // Parcell 2
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
 
+  addHandlerClick(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--inline');
+      const goToPage = +btn.dataset.goto;
+      console.log(goToPage);
+      handler();
+    });
+  }
+
   // Create pagination buttons based on conditions
   _generateMarkupButton(type, currentPage) {
     return `
-      <button class="btn--inline pagination__btn--${
-        type === 'next' ? 'next' : 'prev'
-      }">
+      <button data-goto="${
+        type === 'next' ? currentPage + 1 : currentPage - 1
+      }" class="btn--inline pagination__btn--${
+      type === 'next' ? 'next' : 'prev'
+    }">
         <span>Page ${type === 'next' ? currentPage + 1 : currentPage - 1}</span>
         <svg class="search__icon">
           <use href="${icons}#icon-arrow-${
       type === 'next' ? 'right' : 'left'
     }"></use>
         </svg>
-    </button>
-    
-    `;
+    </button>`;
   }
 
   _generateMarkup() {
