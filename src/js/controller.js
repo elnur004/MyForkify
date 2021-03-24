@@ -25,6 +25,9 @@ const controlRecipes = async function () {
 
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
+
+    // TEST
+    controlServings();
   } catch (err) {
     recipeView.renderError(err.message);
   }
@@ -58,6 +61,14 @@ const controlPagination = function (goToPage) {
 
   // 2) Render NEW pagination buttons
   paginationView.render(model.state.search);
+};
+
+const controlServings = function () {
+  // 1) Update recipe servings (in state)
+  model.updateServings(8);
+
+  // 2) Update recipe view
+  recipeView.render(model.state.recipe);
 };
 
 // Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)
