@@ -34,6 +34,17 @@ export default class View {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings');
+      if (!btn) return;
+
+      const { updateTo } = btn.dataset;
+      if (+updateTo < 1) return;
+      handler(+updateTo);
+    });
+  }
+
   renderError(message = this._errorMessage) {
     const errMsg = message.includes('Invalid _id:')
       ? this._errorMessage
