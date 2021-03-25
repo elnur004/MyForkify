@@ -65,7 +65,10 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // 2) Update recipe view
-  recipeView.render(model.state.recipe);
+  // recipeView.render(model.state.recipe);
+
+  // Only update TEXT and ATTRIBUTES in the DOM, without rerender entire VIEW
+  recipeView.update(model.state.recipe);
 };
 
 // Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)

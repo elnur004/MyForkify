@@ -13,6 +13,19 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  update(data) {
+    // Check the data is 'undefined' and 'null' or is an array and it is empty --> if so? return 'ERROR'!
+    if (!data || (Array.isArray(data) && data.length === 0))
+      return this.renderError();
+
+    this._data = data;
+    const newMarkup = this._generateMarkup();
+
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = newDOM.querySelectorAll('*');
+    console.log(newElements);
+  }
+
   _clear() {
     this._parentElement.innerHTML = ''; // clear the PARENT element before insert anything
   }
