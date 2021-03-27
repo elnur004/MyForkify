@@ -14,10 +14,6 @@ export default class View {
   }
 
   update(data) {
-    // Check the data is 'undefined' and 'null' or is an array and it is empty --> if so? return 'ERROR'!
-    if (!data || (Array.isArray(data) && data.length === 0))
-      return this.renderError();
-
     this._data = data;
     const newMarkup = this._generateMarkup();
 
