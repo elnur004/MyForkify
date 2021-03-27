@@ -71,6 +71,14 @@ export default class View {
     });
   }
 
+  addHandlerAddBookmark(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--bookmark');
+      if (!btn) return;
+      handler();
+    });
+  }
+
   renderError(message = this._errorMessage) {
     const errMsg = message.includes('Invalid _id:')
       ? this._errorMessage
