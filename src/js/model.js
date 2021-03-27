@@ -49,6 +49,9 @@ export const loadSearchResults = async function (query) {
         imageUrl: rec.image_url,
       };
     });
+
+    // After new recipe search, reset page to 1
+    state.search.page = 1;
   } catch (err) {
     console.error(`${err} 💥 💥 💥 💥`);
     throw err;
