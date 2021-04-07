@@ -136,7 +136,17 @@ export const uploadRecipe = async function (newRecipe) {
           description,
         };
       });
-    console.log(ingredients);
+
+    const recipe = {
+      title: newRecipe.title,
+      publisher: newRecipe.publisher,
+      cooking_time: +newRecipe.cookingTime,
+      image_url: newRecipe.image,
+      servings: +newRecipe.servings,
+      source_url: newRecipe.sourceUrl,
+      ingredients,
+    };
+    console.log(recipe);
   } catch (err) {
     throw err;
   }
