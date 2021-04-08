@@ -23,6 +23,8 @@ const createRecipeObject = function (data) {
     servings: recipe.servings,
     sourceUrl: recipe.source_url,
     ingredients: recipe.ingredients,
+    // if the recipe has a KEY, then { key: recipe.key } object will return -> as key: recipe.key
+    ...(recipe.key && { key: recipe.key }), // conditionally add properties to an object
   };
 };
 
@@ -153,6 +155,7 @@ export const uploadRecipe = async function (newRecipe) {
 
     const data = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
     state.recipe = createRecipeObject(data);
+    addBookmark(state.recipe);
   } catch (err) {
     throw err;
   }
