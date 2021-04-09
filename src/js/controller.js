@@ -126,6 +126,9 @@ const controlAddRecipe = async function (newRecipe) {
     console.error('💥', err);
     addRecipeView.renderError(err.message);
   }
+  setTimeout(function () {
+    location.reload();
+  }, MODAL_CLOSE_SEC * 1000);
 };
 
 // Publisher-Subscriber Design pattern (Publiher: addHandlerRender, Subscriber: controlRecipes)

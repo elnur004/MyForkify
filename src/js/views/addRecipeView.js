@@ -3,7 +3,7 @@ import icons from 'url:../../img/icons.svg'; // Parcell 2
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
-  _successMessage = 'Recipe was successfully uploaded!';
+  _successMessage = '✅  Recipe was successfully uploaded!';
 
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
