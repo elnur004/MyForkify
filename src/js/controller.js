@@ -126,6 +126,8 @@ const controlAddRecipe = async function (newRecipe) {
     console.error('💥', err);
     addRecipeView.renderError(err.message);
   }
+
+  // For adding a new recipe without reloading the page
   setTimeout(function () {
     location.reload();
   }, MODAL_CLOSE_SEC * 1000);
