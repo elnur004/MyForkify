@@ -7,8 +7,8 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
 
-import 'core-js/stable'; // for polyfilling everything
-import 'regenerator-runtime/runtime'; // for polyfilling async/await
+// import 'core-js/stable'; // for polyfilling everything
+// import 'regenerator-runtime/runtime'; // for polyfilling async/await
 
 // Parcel "Hot Module Replacement" -- improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh.
 if (module.hot) {
